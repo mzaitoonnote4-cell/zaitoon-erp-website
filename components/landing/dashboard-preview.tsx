@@ -1,134 +1,301 @@
 "use client"
 
-import { TrendingUp, Users, ShoppingBag, DollarSign } from "lucide-react"
+import {
+  AlertTriangle,
+  BarChart3,
+  Building2,
+  ClipboardList,
+  Moon,
+  Package,
+  ReceiptText,
+  ShieldCheck,
+  ShoppingBag,
+  Sun,
+  Users,
+  Wrench,
+} from "lucide-react"
 
 const stats = [
-  { label: "المبيعات اليومية", value: "12,450", change: "+12%", icon: DollarSign },
-  { label: "الطلبات الجديدة", value: "156", change: "+8%", icon: ShoppingBag },
-  { label: "العملاء النشطين", value: "2,340", change: "+15%", icon: Users },
-  { label: "معدل النمو", value: "24%", change: "+5%", icon: TrendingUp },
+  {
+    label: "مبيعات اليوم",
+    value: "1,250,000",
+    hint: "د.ع",
+    icon: ShoppingBag,
+  },
+  {
+    label: "الفواتير",
+    value: "24",
+    hint: "فاتورة",
+    icon: ReceiptText,
+  },
+  {
+    label: "تنبيهات المخزون",
+    value: "8",
+    hint: "منتجات تحتاج متابعة",
+    icon: Package,
+  },
+  {
+    label: "العملاء",
+    value: "156",
+    hint: "عميل نشط",
+    icon: Users,
+  },
 ]
 
-const recentOrders = [
-  { id: "#12345", customer: "أحمد محمد", amount: "1,250", status: "مكتمل" },
-  { id: "#12344", customer: "فاطمة علي", amount: "890", status: "قيد التنفيذ" },
-  { id: "#12343", customer: "خالد سعد", amount: "2,100", status: "مكتمل" },
-  { id: "#12342", customer: "نورة أحمد", amount: "450", status: "معلق" },
+const activityRows = [
+  {
+    title: "فاتورة مبيعات جديدة",
+    detail: "تم إنشاء فاتورة من نقطة البيع POS",
+    status: "مكتمل",
+    icon: ReceiptText,
+  },
+  {
+    title: "تنبيه مخزون",
+    detail: "منتج وصل إلى حد التنبيه ويحتاج متابعة",
+    status: "تنبيه",
+    icon: AlertTriangle,
+  },
+  {
+    title: "أمر خدمة",
+    detail: "حالة صيانة بانتظار الفوترة",
+    status: "متابعة",
+    icon: Wrench,
+  },
+  {
+    title: "تحديث صلاحيات",
+    detail: "تم تعديل صلاحيات أحد المستخدمين",
+    status: "تدقيق",
+    icon: ShieldCheck,
+  },
+]
+
+const modules = [
+  "المبيعات",
+  "المخزون",
+  "الفواتير",
+  "العملاء",
+  "POS",
+  "الصيانة",
+  "التقارير",
+  "الصلاحيات",
 ]
 
 export function DashboardPreview() {
   return (
-    <section id="dashboard" className="py-24 relative overflow-hidden">
+    <section
+      id="dashboard"
+      dir="rtl"
+      className="relative overflow-hidden py-24"
+    >
       {/* Background */}
       <div className="absolute inset-0 bg-secondary/30" />
-      
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="absolute right-0 top-20 h-80 w-80 rounded-full bg-primary/5 blur-3xl" />
+      <div className="absolute bottom-10 left-0 h-72 w-72 rounded-full bg-primary/5 blur-3xl" />
+
+      <div className="container relative z-10 mx-auto px-4">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-primary text-sm font-semibold tracking-wide mb-4 block">
-            لوحة التحكم
+        <div className="mx-auto mb-16 max-w-3xl text-center">
+          <span className="mb-4 block text-sm font-semibold tracking-wide text-primary">
+            واجهة المنصة
           </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-balance">
-            واجهة سهلة{" "}
-            <span className="text-gradient-gold">وقوية</span>
+
+          <h2 className="mb-6 text-3xl font-bold text-foreground md:text-4xl lg:text-5xl">
+            لوحة عمل واضحة{" "}
+            <span className="text-gradient-gold">للإدارة والموظفين</span>
           </h2>
-          <p className="text-muted-foreground text-lg text-pretty">
-            لوحة تحكم متطورة تمنحك رؤية شاملة لأداء عملك في الوقت الفعلي
+
+          <p className="text-lg leading-8 text-muted-foreground">
+            واجهة Za ERP مصممة لتجمع أهم المؤشرات والوحدات التشغيلية في تجربة
+            عربية منظمة، مع مراعاة الصلاحيات والوضع النهاري والليلي.
           </p>
         </div>
 
         {/* Dashboard Preview */}
-        <div className="max-w-6xl mx-auto">
-          <div className="bg-card rounded-3xl border-gold-glow p-4 md:p-8 animate-float">
+        <div className="mx-auto max-w-6xl">
+          <div className="border-gold-glow rounded-3xl bg-card/85 p-4 shadow-2xl backdrop-blur md:p-8">
             {/* Dashboard Header */}
-            <div className="flex items-center justify-between mb-8 pb-4 border-b border-border">
+            <div className="mb-8 flex flex-col gap-4 border-b border-border pb-5 md:flex-row md:items-center md:justify-between">
               <div>
-                <h3 className="text-xl font-semibold text-foreground">لوحة التحكم الرئيسية</h3>
-                <p className="text-muted-foreground text-sm">مرحباً، محمد 👋</p>
+                <div className="mb-2 flex items-center gap-2 text-sm text-muted-foreground">
+                  <Building2 className="h-4 w-4 text-primary" />
+                  <span>شركة تجريبية / بيانات توضيحية</span>
+                </div>
+
+                <h3 className="text-xl font-semibold text-foreground">
+                  لوحة التحكم الرئيسية
+                </h3>
+
+                <p className="mt-1 text-sm text-muted-foreground">
+                  نظرة مختصرة على المبيعات، المخزون، الفواتير، والتنبيهات
+                </p>
               </div>
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 rounded-full bg-green-500" />
-                <span className="text-sm text-muted-foreground">متصل</span>
+
+              <div className="flex flex-wrap items-center gap-3">
+                <div className="flex items-center gap-2 rounded-full border border-border bg-secondary/60 px-3 py-2 text-xs text-muted-foreground">
+                  <Sun className="h-4 w-4 text-primary" />
+                  <span>Day</span>
+                  <span>/</span>
+                  <Moon className="h-4 w-4 text-primary" />
+                  <span>Night</span>
+                </div>
+
+                <div className="flex items-center gap-2 rounded-full border border-border bg-secondary/60 px-3 py-2 text-xs text-muted-foreground">
+                  <ShieldCheck className="h-4 w-4 text-primary" />
+                  <span>حسب الصلاحيات</span>
+                </div>
               </div>
             </div>
 
             {/* Stats Grid */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-              {stats.map((stat) => (
-                <div
-                  key={stat.label}
-                  className="bg-secondary/50 rounded-xl p-4 border border-border hover:border-primary/30 transition-colors"
-                >
-                  <div className="flex items-center justify-between mb-2">
-                    <stat.icon className="w-5 h-5 text-primary" />
-                    <span className="text-xs text-green-500 font-medium">{stat.change}</span>
+            <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {stats.map((stat) => {
+                const Icon = stat.icon
+
+                return (
+                  <div
+                    key={stat.label}
+                    className="rounded-2xl border border-border bg-background/65 p-5 transition-colors hover:border-primary/30"
+                  >
+                    <div className="mb-4 flex items-center justify-between">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10">
+                        <Icon className="h-5 w-5 text-primary" />
+                      </div>
+                      <span className="rounded-full bg-secondary/70 px-3 py-1 text-xs text-muted-foreground">
+                        اليوم
+                      </span>
+                    </div>
+
+                    <p className="mb-1 text-2xl font-bold text-foreground">
+                      {stat.value}
+                    </p>
+                    <p className="mb-2 text-xs text-primary">{stat.hint}</p>
+                    <p className="text-sm text-muted-foreground">
+                      {stat.label}
+                    </p>
                   </div>
-                  <p className="text-2xl font-bold text-foreground mb-1">{stat.value}</p>
-                  <p className="text-xs text-muted-foreground">{stat.label}</p>
-                </div>
-              ))}
+                )
+              })}
             </div>
 
-            {/* Chart Placeholder & Recent Orders */}
-            <div className="grid lg:grid-cols-2 gap-6">
+            {/* Chart Placeholder & Recent Activity */}
+            <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
               {/* Chart */}
-              <div className="bg-secondary/30 rounded-xl p-6 border border-border">
-                <h4 className="text-sm font-semibold text-foreground mb-4">إحصائيات المبيعات</h4>
-                <div className="h-48 flex items-end justify-between gap-2">
-                  {[65, 45, 80, 55, 90, 70, 85, 60, 75, 95, 68, 88].map((height, i) => (
-                    <div key={i} className="flex-1 flex flex-col items-center gap-1">
-                      <div
-                        className="w-full bg-primary/60 rounded-t-sm hover:bg-primary transition-colors cursor-pointer"
-                        style={{ height: `${height}%` }}
-                      />
-                    </div>
-                  ))}
+              <div className="rounded-2xl border border-border bg-background/65 p-6">
+                <div className="mb-5 flex items-center justify-between gap-4">
+                  <div>
+                    <h4 className="text-sm font-semibold text-foreground">
+                      قراءة المبيعات
+                    </h4>
+                    <p className="mt-1 text-xs text-muted-foreground">
+                      عرض توضيحي لشكل مؤشرات الأداء داخل المنصة
+                    </p>
+                  </div>
+
+                  <BarChart3 className="h-5 w-5 text-primary" />
                 </div>
-                <div className="flex justify-between mt-3 text-xs text-muted-foreground">
-                  <span>يناير</span>
-                  <span>يونيو</span>
-                  <span>ديسمبر</span>
+
+                <div className="flex h-48 items-end justify-between gap-2">
+                  {[58, 44, 70, 52, 82, 64, 76, 48, 68, 88, 60, 80].map(
+                    (height, index) => (
+                      <div
+                        key={index}
+                        className="flex flex-1 flex-col items-center gap-1"
+                      >
+                        <div
+                          className="w-full rounded-t-md bg-primary/60 transition-colors hover:bg-primary"
+                          style={{ height: `${height}%` }}
+                        />
+                      </div>
+                    ),
+                  )}
+                </div>
+
+                <div className="mt-4 flex justify-between text-xs text-muted-foreground">
+                  <span>بداية الفترة</span>
+                  <span>منتصف الفترة</span>
+                  <span>نهاية الفترة</span>
                 </div>
               </div>
 
-              {/* Recent Orders */}
-              <div className="bg-secondary/30 rounded-xl p-6 border border-border">
-                <h4 className="text-sm font-semibold text-foreground mb-4">أحدث الطلبات</h4>
-                <div className="flex flex-col gap-3">
-                  {recentOrders.map((order) => (
-                    <div
-                      key={order.id}
-                      className="flex items-center justify-between py-2 border-b border-border last:border-0"
-                    >
-                      <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
-                          <Users className="w-4 h-4 text-primary" />
-                        </div>
-                        <div>
-                          <p className="text-sm font-medium text-foreground">{order.customer}</p>
-                          <p className="text-xs text-muted-foreground">{order.id}</p>
-                        </div>
-                      </div>
-                      <div className="text-left">
-                        <p className="text-sm font-semibold text-foreground">{order.amount} ر.س</p>
-                        <span
-                          className={`text-xs ${
-                            order.status === "مكتمل"
-                              ? "text-green-500"
-                              : order.status === "قيد التنفيذ"
-                              ? "text-primary"
-                              : "text-yellow-500"
-                          }`}
-                        >
-                          {order.status}
-                        </span>
-                      </div>
-                    </div>
-                  ))}
+              {/* Recent Activity */}
+              <div className="rounded-2xl border border-border bg-background/65 p-6">
+                <div className="mb-5 flex items-center justify-between gap-4">
+                  <div>
+                    <h4 className="text-sm font-semibold text-foreground">
+                      أحدث النشاطات
+                    </h4>
+                    <p className="mt-1 text-xs text-muted-foreground">
+                      متابعة مختصرة لما يحدث داخل النظام
+                    </p>
+                  </div>
+
+                  <ClipboardList className="h-5 w-5 text-primary" />
                 </div>
+
+                <div className="flex flex-col gap-3">
+                  {activityRows.map((row) => {
+                    const Icon = row.icon
+
+                    return (
+                      <div
+                        key={row.title}
+                        className="rounded-xl border border-border bg-secondary/35 p-4"
+                      >
+                        <div className="flex items-start justify-between gap-4">
+                          <div className="flex items-start gap-3">
+                            <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl bg-primary/10">
+                              <Icon className="h-4 w-4 text-primary" />
+                            </div>
+
+                            <div>
+                              <p className="text-sm font-medium text-foreground">
+                                {row.title}
+                              </p>
+                              <p className="mt-1 text-xs leading-6 text-muted-foreground">
+                                {row.detail}
+                              </p>
+                            </div>
+                          </div>
+
+                          <span className="whitespace-nowrap rounded-full border border-border bg-background/70 px-3 py-1 text-xs text-muted-foreground">
+                            {row.status}
+                          </span>
+                        </div>
+                      </div>
+                    )
+                  })}
+                </div>
+              </div>
+            </div>
+
+            {/* Modules */}
+            <div className="mt-6 rounded-2xl border border-border bg-background/65 p-6">
+              <div className="mb-4 flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+                <h4 className="text-sm font-semibold text-foreground">
+                  وحدات المنصة في تجربة واحدة
+                </h4>
+                <p className="text-xs text-muted-foreground">
+                  تظهر الوحدات حسب الخطة والصلاحيات
+                </p>
+              </div>
+
+              <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-8">
+                {modules.map((module) => (
+                  <div
+                    key={module}
+                    className="rounded-xl border border-border bg-secondary/45 px-3 py-3 text-center text-xs text-foreground"
+                  >
+                    {module}
+                  </div>
+                ))}
               </div>
             </div>
           </div>
+
+          <p className="mx-auto mt-5 max-w-3xl text-center text-xs leading-6 text-muted-foreground">
+            هذا العرض واجهة توضيحية تسويقية، وقد تختلف التفاصيل حسب الخطة
+            والصلاحيات والوحدات المفعّلة لكل شركة.
+          </p>
         </div>
       </div>
     </section>

@@ -1,115 +1,210 @@
 "use client"
 
-import { Check, Star } from "lucide-react"
+import {
+  BadgeCheck,
+  Building2,
+  Check,
+  GitBranch,
+  Layers3,
+  Lock,
+  Moon,
+  ShieldCheck,
+  Sparkles,
+  Sun,
+} from "lucide-react"
 
 const benefits = [
-  "واجهة سهلة الاستخدام باللغة العربية",
-  "تقارير وتحليلات في الوقت الفعلي",
-  "دعم الفواتير الإلكترونية والضريبية",
-  "تكامل مع أنظمة الدفع المختلفة",
-  "نسخ احتياطي تلقائي للبيانات",
-  "دعم فني متخصص على مدار الساعة",
+  "واجهة عربية RTL مناسبة لبيئة العمل المحلية",
+  "دعم الوضع النهاري والليلي بتصميم احترافي",
+  "صلاحيات تساعد على تحديد ما يراه وينفذه كل موظف",
+  "تنظيم المبيعات والمخزون والفواتير والعملاء من مكان واحد",
+  "تقارير تساعد الإدارة على قراءة الأداء واتخاذ قرارات أوضح",
+  "قابلية التوسع تدريجياً حسب نمو الشركة والفروع",
 ]
 
-const testimonials = [
+const principles = [
   {
-    name: "أحمد الراشد",
-    role: "مدير شركة الأفق التجارية",
-    content: "زيتون ERP غيّر طريقة إدارتنا للمخزون والمبيعات. النظام سهل وفعّال جداً.",
-    rating: 5,
+    icon: ShieldCheck,
+    title: "الخصوصية والصلاحيات",
+    description:
+      "تصميم يراعي فصل بيانات الشركات وتحديد صلاحيات الموظفين حسب المسؤوليات داخل كل شركة.",
   },
   {
-    name: "سارة المحمد",
-    role: "صاحبة متجر إلكتروني",
-    content: "أفضل نظام ERP تعاملت معه. الدعم الفني ممتاز والواجهة العربية رائعة.",
-    rating: 5,
+    icon: Layers3,
+    title: "تطوير تدريجي ومنظم",
+    description:
+      "يتم بناء المنصة على مراحل واضحة، مع التركيز على الاستقرار وتجربة المستخدم قبل التوسع السريع.",
   },
+  {
+    icon: Building2,
+    title: "مناسبة للشركات المحلية",
+    description:
+      "Za ERP موجهة للشركات والمتاجر المحلية التي تحتاج نظاماً عربياً واضحاً بدون تعقيد غير ضروري.",
+  },
+]
+
+const roadmapItems = [
+  "توسيع تقارير الإدارة والمالية",
+  "تطوير تجربة نقاط البيع POS",
+  "توسعة المشتريات والموردين",
+  "تحسين مسارات الصيانة والخدمات",
+  "خيارات تخصيص حسب سياسة كل شركة",
+  "إدارة SaaS أوسع للاشتراكات والشركات",
 ]
 
 export function AboutSection() {
   return (
-    <section id="about" className="py-24 relative">
+    <section id="about" dir="rtl" className="relative overflow-hidden py-24">
       {/* Background */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent" />
-      
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+      <div className="absolute right-0 top-20 h-80 w-80 rounded-full bg-primary/5 blur-3xl" />
+      <div className="absolute bottom-10 left-0 h-72 w-72 rounded-full bg-primary/5 blur-3xl" />
+
+      <div className="container relative z-10 mx-auto px-4">
+        <div className="grid items-center gap-14 lg:grid-cols-[1fr_0.95fr]">
           {/* Content */}
           <div>
-            <span className="text-primary text-sm font-semibold tracking-wide mb-4 block">
+            <span className="mb-4 block text-sm font-semibold tracking-wide text-primary">
               عن المنصة
             </span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-balance">
+
+            <h2 className="mb-6 text-3xl font-bold text-foreground md:text-4xl lg:text-5xl">
               لماذا{" "}
-              <span className="text-gradient-gold">زيتون ERP</span>؟
+              <span className="text-gradient-gold">Za ERP</span>؟
             </h2>
-            <p className="text-muted-foreground text-lg mb-8 text-pretty leading-relaxed">
-              زيتون ERP هو نظام إدارة موارد المؤسسات المصمم خصيصاً للسوق العربي، 
-              يجمع بين القوة والبساطة لمساعدتك على إدارة عملك بكفاءة عالية. 
-              من المبيعات إلى المخزون والفواتير، كل شيء في مكان واحد.
+
+            <p className="mb-6 text-lg leading-9 text-muted-foreground">
+              Za ERP هي منصة ERP عربية يتم تطويرها لتساعد الشركات المحلية على
+              تنظيم المبيعات، المخزون، الفواتير، العملاء، الصلاحيات، التقارير،
+              والعمليات اليومية بطريقة واضحة وقابلة للتوسع.
+            </p>
+
+            <p className="mb-8 text-base leading-8 text-muted-foreground">
+              تركيز المنصة ليس فقط على إضافة مميزات كثيرة، بل على بناء نظام
+              عملي ومستقر يحترم خصوصية بيانات الشركات، ويمنح الإدارة رؤية أوضح،
+              ويجعل تجربة الموظف اليومية أسهل وأكثر تنظيماً.
             </p>
 
             {/* Benefits List */}
-            <div className="grid sm:grid-cols-2 gap-4 mb-8">
+            <div className="mb-8 grid gap-4 sm:grid-cols-2">
               {benefits.map((benefit) => (
                 <div key={benefit} className="flex items-start gap-3">
-                  <div className="w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <Check className="w-3 h-3 text-primary" />
+                  <div className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-primary/20">
+                    <Check className="h-3 w-3 text-primary" />
                   </div>
-                  <span className="text-foreground text-sm">{benefit}</span>
+                  <span className="text-sm leading-7 text-foreground">
+                    {benefit}
+                  </span>
                 </div>
               ))}
             </div>
 
-            {/* Stats */}
-            <div className="flex gap-8 pt-8 border-t border-border">
-              <div>
-                <p className="text-3xl font-bold text-gradient-gold">+500</p>
-                <p className="text-muted-foreground text-sm">شركة تستخدم المنصة</p>
+            {/* Status Cards */}
+            <div className="grid gap-4 border-t border-border pt-8 sm:grid-cols-3">
+              <div className="rounded-2xl border border-border bg-card/70 p-4">
+                <div className="mb-3 flex items-center gap-2 text-primary">
+                  <BadgeCheck className="h-5 w-5" />
+                  <span className="text-sm font-semibold">Pilot</span>
+                </div>
+                <p className="text-sm leading-6 text-muted-foreground">
+                  جاهزة للتجارب الأولية والتطوير حسب احتياجات الشركات.
+                </p>
               </div>
-              <div>
-                <p className="text-3xl font-bold text-gradient-gold">99.9%</p>
-                <p className="text-muted-foreground text-sm">وقت التشغيل</p>
+
+              <div className="rounded-2xl border border-border bg-card/70 p-4">
+                <div className="mb-3 flex items-center gap-2 text-primary">
+                  <GitBranch className="h-5 w-5" />
+                  <span className="text-sm font-semibold">SaaS</span>
+                </div>
+                <p className="text-sm leading-6 text-muted-foreground">
+                  بنية قابلة للتوسع لشركات متعددة واشتراكات مستقبلية.
+                </p>
               </div>
-              <div>
-                <p className="text-3xl font-bold text-gradient-gold">24/7</p>
-                <p className="text-muted-foreground text-sm">دعم فني</p>
+
+              <div className="rounded-2xl border border-border bg-card/70 p-4">
+                <div className="mb-3 flex items-center gap-2 text-primary">
+                  <Lock className="h-5 w-5" />
+                  <span className="text-sm font-semibold">Permissions</span>
+                </div>
+                <p className="text-sm leading-6 text-muted-foreground">
+                  فصل أدوار وصلاحيات الموظفين حسب مسؤوليات العمل.
+                </p>
               </div>
             </div>
           </div>
 
-          {/* Testimonials */}
+          {/* Platform Vision Cards */}
           <div className="flex flex-col gap-6">
-            {testimonials.map((testimonial, index) => (
-              <div
-                key={testimonial.name}
-                className="bg-card rounded-2xl p-6 border-gold-glow animate-in fade-in slide-in-from-left-4"
-                style={{ animationDelay: `${index * 200}ms` }}
-              >
-                {/* Rating */}
-                <div className="flex gap-1 mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-primary text-primary" />
-                  ))}
+            <div className="border-gold-glow rounded-3xl bg-card/80 p-6 shadow-sm backdrop-blur">
+              <div className="mb-5 flex items-center justify-between gap-4">
+                <div>
+                  <p className="text-sm text-muted-foreground">هوية حديثة</p>
+                  <h3 className="text-2xl font-bold text-foreground">
+                    تجربة مناسبة للإدارة والموظفين
+                  </h3>
                 </div>
-                
-                {/* Content */}
-                <p className="text-foreground mb-4 leading-relaxed">{`"${testimonial.content}"`}</p>
-                
-                {/* Author */}
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
-                    <span className="text-primary font-semibold">
-                      {testimonial.name.charAt(0)}
-                    </span>
-                  </div>
-                  <div>
-                    <p className="text-foreground font-medium text-sm">{testimonial.name}</p>
-                    <p className="text-muted-foreground text-xs">{testimonial.role}</p>
-                  </div>
+
+                <div className="flex items-center gap-2 rounded-full border border-border bg-secondary/60 px-3 py-2 text-primary">
+                  <Sun className="h-4 w-4" />
+                  <span className="text-xs text-muted-foreground">/</span>
+                  <Moon className="h-4 w-4" />
                 </div>
               </div>
-            ))}
+
+              <p className="mb-6 text-sm leading-7 text-muted-foreground">
+                تم تصميم المنصة لتظهر باحتراف في الوضع النهاري والليلي، مع
+                واجهة عربية واضحة تقلل التشتت وتساعد الموظف على إنجاز عمله
+                اليومي بسهولة.
+              </p>
+
+              <div className="grid gap-4">
+                {principles.map((item) => {
+                  const Icon = item.icon
+
+                  return (
+                    <div
+                      key={item.title}
+                      className="rounded-2xl border border-border bg-background/60 p-4"
+                    >
+                      <div className="mb-3 flex items-center gap-3">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10">
+                          <Icon className="h-5 w-5 text-primary" />
+                        </div>
+                        <h4 className="font-semibold text-foreground">
+                          {item.title}
+                        </h4>
+                      </div>
+                      <p className="text-sm leading-7 text-muted-foreground">
+                        {item.description}
+                      </p>
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
+
+            <div className="rounded-3xl border border-border bg-card/70 p-6 shadow-sm backdrop-blur">
+              <div className="mb-5 flex items-center gap-2 text-primary">
+                <Sparkles className="h-5 w-5" />
+                <h3 className="font-semibold">اتجاه التطوير القادم</h3>
+              </div>
+
+              <div className="grid gap-3 sm:grid-cols-2">
+                {roadmapItems.map((item) => (
+                  <div
+                    key={item}
+                    className="rounded-xl border border-border bg-secondary/50 px-4 py-3 text-sm text-muted-foreground"
+                  >
+                    {item}
+                  </div>
+                ))}
+              </div>
+
+              <p className="mt-5 text-xs leading-6 text-muted-foreground">
+                يتم تنفيذ هذه التوسعات تدريجياً حسب الأولوية والاستقرار واحتياج
+                الشركات، وليس كوعود تسويقية فورية.
+              </p>
+            </div>
           </div>
         </div>
       </div>
